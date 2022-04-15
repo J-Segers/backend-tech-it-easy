@@ -19,13 +19,13 @@
 >> - Het project bevat een ExceptionController;
 >> - Het project bevat een RecordNotFoundException;
 >> - De TelevisionsController bevat:
-     >>  - een GET-request voor alle televisies
+>>  - een GET-request voor alle televisies
 >>  - een GET-request voor 1 televisie
 >>  - een POST-request voor 1 televisie
 >>  - een PUT-request voor 1 televisie
 >>  - een DELETE-request voor 1 televisie
 >> - De ExceptionController bevat:
-     >>  - een exceptionhandler
+>>  - een exceptionhandler
 >> - De RecordNotFoundException bevat:
-     >>  - een default exception
+>>  - een default exception
 >>  - een exception met message
