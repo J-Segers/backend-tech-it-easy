@@ -32,16 +32,13 @@
 >
 
 > ### Opdracht 2
->> - Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Models;
->> - Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Repositories;
->> - Het project bevat een Television in de map Models;
->> - Het project bevat een TelevisionRepository;
+>> - ✔Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Models;
+>> - ✔Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Repositories;
+>> - ✔Het project bevat een Television in de map Models;
+>> - ✔Het project bevat een TelevisionRepository;
 >> - Het project bevat de volgende dependencies:
->>  - Spring Web
->>  - Spring Data Jpa
->>  - PostgreSQL Driver
->> - De Application.properties bevat de properties uit hoofdstuk 9.2 van de cursus Spring Boot(met aangepaste namen)
->> - De TelevisionRepository extends JpaRepository met de juiste parameters
+>>  - De Application.properties bevat de properties uit hoofdstuk 9.2 van de cursus Spring Boot(met aangepaste namen)
+>>  - De TelevisionRepository extends JpaRepository met de juiste parameters
 >> - De Television bevat: -de attributen:
 >>  - Long id (incl. annotaties id en generatedValue)
 >>  - String type
@@ -62,4 +59,4 @@
 >>  - Integer sold
 >>  - default constructor
 >>  - constructor
->>  - alle getters en setters
+>>  - alle getters en setter/s
