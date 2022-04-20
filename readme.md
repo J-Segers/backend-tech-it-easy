@@ -37,7 +37,7 @@
 >> - ✔Het project bevat een Television in de map Models;
 >> - ✔Het project bevat een TelevisionRepository;
 >> - Het project bevat de volgende dependencies:
->>  - De Application.properties bevat de properties uit hoofdstuk 9.2 van de cursus Spring Boot(met aangepaste namen)
+>>  - ✔De Application.properties bevat de properties uit hoofdstuk 9.2 van de cursus Spring Boot(met aangepaste namen)
 >>  - De TelevisionRepository extends JpaRepository met de juiste parameters
 >> - De Television bevat: -de attributen:
 >>  - Long id (incl. annotaties id en generatedValue)
