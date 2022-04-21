@@ -38,25 +38,25 @@
 >> - ✔Het project bevat een TelevisionRepository;
 >> - Het project bevat de volgende dependencies:
 >>  - ✔De Application.properties bevat de properties uit hoofdstuk 9.2 van de cursus Spring Boot(met aangepaste namen)
->>  - De TelevisionRepository extends JpaRepository met de juiste parameters
+>>  - ✔De TelevisionRepository extends JpaRepository met de juiste parameters
 >> - De Television bevat: -de attributen:
->>  - Long id (incl. annotaties id en generatedValue)
->>  - String type
->>  - String brand
->>  - String name
->>  - Double price
->>  - Double availableSize
->>  - Double refreshRate
->>  - String screenType
->>  - String screenQuality
->>  - Boolean smartTv
->>  - Boolean wifi
->>  - Boolean voiceControl
->>  - Boolean hdr
->>  - Boolean bluetooth
->>  - Boolean ambiLight
->>  - Integer originalStock
->>  - Integer sold
->>  - default constructor
->>  - constructor
->>  - alle getters en setter/s
+>>  - ✔Long id (incl. annotaties id en generatedValue)
+>>  - ✔String type
+>>  - ✔String brand
+>>  - ✔String name
+>>  - ✔Double price
+>>  - ✔Double availableSize
+>>  - ✔Double refreshRate
+>>  - ✔String screenType
+>>  - ✔String screenQuality
+>>  - ✔Boolean smartTv
+>>  - ✔Boolean wifi
+>>  - ✔Boolean voiceControl
+>>  - ✔Boolean hdr
+>>  - ✔Boolean bluetooth
+>>  - ✔Boolean ambiLight
+>>  - ✔Integer originalStock
+>>  - ✔Integer sold
+>>  - ✔default constructor
+>>  - ✔constructor
+>>  - ✔alle getters en setter/s
