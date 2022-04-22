@@ -1,11 +1,20 @@
 package nl.novi.les.springboot.backendtechiteasy.controllers;
 
+import nl.novi.les.springboot.backendtechiteasy.services.TelevisionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("televisions")
 public class TelevisionsController {
+
+    private TelevisionService televisionService;
+
+    @Autowired
+    public TelevisionsController(TelevisionService televisionService) {
+        this.televisionService = televisionService;
+    }
 
     @GetMapping
     public ResponseEntity<Object> getAllTvs() {
