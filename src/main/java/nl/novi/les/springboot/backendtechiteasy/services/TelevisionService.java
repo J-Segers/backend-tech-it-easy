@@ -4,10 +4,12 @@ import nl.novi.les.springboot.backendtechiteasy.exceptions.RecordNotFoundExcepti
 import nl.novi.les.springboot.backendtechiteasy.models.Television;
 import nl.novi.les.springboot.backendtechiteasy.repositories.TelevisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TelevisionService {
 
     private TelevisionRepository televisionRepository;
