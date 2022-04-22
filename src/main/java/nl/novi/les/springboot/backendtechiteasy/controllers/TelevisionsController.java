@@ -27,9 +27,9 @@ public class TelevisionsController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Object> getTvById() {
+    public ResponseEntity<Television> getTvById(@PathVariable Long id) {
 
-        return ResponseEntity.ok("Goodbye cruel world!");
+        return ResponseEntity.ok(televisionService.getTvById(id));
 
     }
 
