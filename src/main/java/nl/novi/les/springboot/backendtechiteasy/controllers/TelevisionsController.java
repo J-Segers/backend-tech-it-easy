@@ -43,7 +43,7 @@ public class TelevisionsController {
     }
 
     @GetMapping("?branch={branch}")
-    public ResponseEntity<Object> getAllTvsOfBrand(@RequestParam String brands) {
+    public ResponseEntity<Object> getAllTvsOfBrand(@RequestParam String brand) {
 
         return ResponseEntity.ok();
 
