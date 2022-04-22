@@ -1,9 +1,12 @@
 package nl.novi.les.springboot.backendtechiteasy.controllers;
 
+import nl.novi.les.springboot.backendtechiteasy.models.Television;
 import nl.novi.les.springboot.backendtechiteasy.services.TelevisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("televisions")
@@ -17,9 +20,9 @@ public class TelevisionsController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> getAllTvs() {
+    public ResponseEntity<List<Television>> getAllTvs() {
 
-        return ResponseEntity.ok("Hello, World!");
+        return ResponseEntity.ok(televisionService.getAllTvs());
 
     }
 
