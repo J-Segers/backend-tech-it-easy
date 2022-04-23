@@ -3,9 +3,12 @@ package nl.novi.les.springboot.backendtechiteasy.controllers;
 import nl.novi.les.springboot.backendtechiteasy.models.Television;
 import nl.novi.les.springboot.backendtechiteasy.services.TelevisionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -34,9 +37,10 @@ public class TelevisionsController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> addTv(@RequestBody Object newTv) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addTv(@RequestBody Television newTv) {
 
-        return ResponseEntity.created();
+        televisionService.addTv(newTv);
 
     }
 
