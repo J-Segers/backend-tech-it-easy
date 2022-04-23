@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("televisions")
@@ -53,17 +54,19 @@ public class TelevisionsController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> updateTv(@PathVariable Long id, @RequestBody Object tv) {
+    public ResponseEntity<Television> updateTv(@PathVariable Long id, @RequestBody Television tv) {
 
-        return ResponseEntity.noContent();
+        televisionService.updateTv(id, tv);
 
-    }
-
-    @GetMapping("?branch={branch}")
-    public ResponseEntity<Object> getAllTvsOfBrand(@RequestParam String brand) {
-
-        return ResponseEntity.ok();
+        return ResponseEntity.noContent().build();
 
     }
+
+//    @GetMapping("?branch={branch}")
+//    public ResponseEntity<Object> getAllTvsOfBrand(@RequestParam String brand) {
+//
+//        return ResponseEntity.ok();
+//
+//    }
 
 }

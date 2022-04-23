@@ -59,4 +59,24 @@
 >>  - ✔Integer sold
 >>  - ✔default constructor
 >>  - ✔constructor
->>  - ✔alle getters en setter/s
+>>  - ✔alle getters en setter/s 
+
+>###Opdracht 3
+>> - ✔Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Services;
+>> - ✔De map Services bevat een klasse genaamd TelevisionService;
+>> - De TelevisionService bevat:
+>>  - ✔de juiste annotatie
+>>  - ✔een private variabele TelevisionRepository
+>>  - ✔de connectie van de Service en de Repository door middel van een autowired
+>>  - ✔een functie voor het ophalen van alle Televisions
+>>  - ✔een functie voor het ophalen van 1 Television
+>>  - ✔een functie voor het opslaan van 1 Television
+>>  - ✔een functie voor het verwijderen van 1 Television
+>>  - een functie voor het updaten van 1 Television
+>> - ✔De Controller is door middel van een autowired gelinkt aan de Service;
+>> - Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Dtos;
+>> - De map Dtos bevat een TelevisionDto en een TelevisionInputDto;
+>> - De requestMappings in de Controller worden aangepast zodat deze de juiste response doorgeven via de Service;
+>> - De Service maakt gebruik van de gegevens die we via de Controller doorkrijgen van de Dtos;
+>> - Het project bevat de validator dependency uit paragraaf 8.1 van de cursus Spring Boot in Edhub.
+ 

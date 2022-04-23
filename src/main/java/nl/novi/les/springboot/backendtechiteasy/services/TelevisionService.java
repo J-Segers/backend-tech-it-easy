@@ -40,6 +40,23 @@ public class TelevisionService {
         televisionRepository.save(newTv);
     }
 
+    public void updateTv(long id, Television tv) {
+
+        Optional<Television> result = televisionRepository.findById(id);
+
+        if(result.isEmpty()) {
+            throw new RecordNotFoundException("tv cannot be found!");
+        }
+
+        Television tvToUpdate = televisionRepository.getById(id);
+
+        tvToUpdate.setPrice(tv.getPrice());
+
+        televisionRepository.save(tvToUpdate);
+
+
+    }
+
     public void removeTv(long id) {
         televisionRepository.deleteById(id);
     }
