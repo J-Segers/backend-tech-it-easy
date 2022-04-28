@@ -32,10 +32,6 @@ public class TelevisionService {
         return televisionRepository.getById(id);
     }
 
-    public List<Television> getAllTvsOfBrand(String brand) {
-        return televisionRepository.getAllTvsByBrand(brand);
-    }
-
     public void addTv(Television newTv) {
         televisionRepository.save(newTv);
     }
@@ -59,6 +55,22 @@ public class TelevisionService {
 
     public void removeTv(long id) {
         televisionRepository.deleteById(id);
+    }
+
+    public List<Television> getAllTvsByType(String value) {
+        return televisionRepository.findTelevisionsByTypeEqualsIgnoreCase(value);
+    }
+
+    public List<Television> getAllTvsByBrand(String value) {
+        return televisionRepository.findTelevisionsByBrandEqualsIgnoreCase(value);
+    }
+
+    public List<Television> getAllTvsByName(String value) {
+        return televisionRepository.findTelevisionsByNameEqualsIgnoreCase(value);
+    }
+
+    public List<Television> getAllTvsByPrice(double value) {
+        return televisionRepository.findTelevisionsByPriceIs(value);
     }
 
 }

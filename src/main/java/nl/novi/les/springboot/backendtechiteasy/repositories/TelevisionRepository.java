@@ -7,6 +7,12 @@ import java.util.List;
 
 public interface TelevisionRepository extends JpaRepository<Television, Long> {
 
-    List<Television> getAllTvsByBrand(String brand);
+    List<Television> findTelevisionsByTypeEqualsIgnoreCase(String type);
+
+    List<Television> findTelevisionsByBrandEqualsIgnoreCase(String brand);
+
+    List<Television> findTelevisionsByNameEqualsIgnoreCase(String name);
+
+    List<Television> findTelevisionsByPriceIs(double price);
 
 }

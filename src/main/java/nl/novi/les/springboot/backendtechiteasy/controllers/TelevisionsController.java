@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("televisions")
@@ -24,49 +21,50 @@ public class TelevisionsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Television>> getAllTvs() {
+    public ResponseEntity<List<Television>> getAllTvs(
+            @RequestParam(value = "type", required = false) String type,
+            @RequestParam(value = "brand", required = false) String brand,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "price", required = false) Double price) {
 
-        return ResponseEntity.ok(televisionService.getAllTvs());
+        List<Television> televisions;
 
+        if(type != null){
+            televisions = televisionService.getAllTvsByType(type);
+        }else if(brand != null){
+            televisions = televisionService.getAllTvsByBrand(brand);
+        }else if(name != null){
+            televisions = televisionService.getAllTvsByName(name);
+        }else if(price != null){
+            televisions = televisionService.getAllTvsByPrice(price);
+        } else {
+            televisions = televisionService.getAllTvs();
+        }
+
+        return ResponseEntity.ok(televisions);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Television> getTvById(@PathVariable Long id) {
-
         return ResponseEntity.ok(televisionService.getTvById(id));
-
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void addTv(@RequestBody Television newTv) {
-
         televisionService.addTv(newTv);
-
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.OK)
     public void removeTv(@PathVariable Long id) {
-
         televisionService.removeTv(id);
-
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Television> updateTv(@PathVariable Long id, @RequestBody Television tv) {
-
+    @ResponseStatus(HttpStatus.OK)
+    public void updateTv(@PathVariable Long id, @RequestBody Television tv) {
         televisionService.updateTv(id, tv);
-
-        return ResponseEntity.noContent().build();
-
     }
-
-//    @GetMapping("?branch={branch}")
-//    public ResponseEntity<Object> getAllTvsOfBrand(@RequestParam String brand) {
-//
-//        return ResponseEntity.ok();
-//
-//    }
 
 }
