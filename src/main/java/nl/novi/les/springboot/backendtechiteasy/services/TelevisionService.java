@@ -1,7 +1,9 @@
 package nl.novi.les.springboot.backendtechiteasy.services;
 
+import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionDto;
+import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionCreatedDto;
 import nl.novi.les.springboot.backendtechiteasy.exceptions.RecordNotFoundException;
-import nl.novi.les.springboot.backendtechiteasy.models.Television;
+import nl.novi.les.springboot.backendtechiteasy.models.entities.Television;
 import nl.novi.les.springboot.backendtechiteasy.repositories.TelevisionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +14,7 @@ import java.util.Optional;
 @Service
 public class TelevisionService {
 
-    private TelevisionRepository televisionRepository;
+    private final TelevisionRepository televisionRepository;
 
     @Autowired
     public TelevisionService(TelevisionRepository televisionRepository) {
@@ -23,20 +25,46 @@ public class TelevisionService {
         return televisionRepository.findAll();
     }
 
-    public Television getTvById(Long id) {
+    public TelevisionCreatedDto getTvById(Long id) {
         Optional<Television> result = televisionRepository.findById(id);
         if(result.isEmpty()) {
             throw new RecordNotFoundException("Tv not found!");
         }
 
-        return televisionRepository.getById(id);
+        Television tv = televisionRepository.getById(id);
+        TelevisionCreatedDto tvDto = new TelevisionCreatedDto();
+        tvDto.setId(tv.getId());
+        tvDto.setType(tv.getType());
+        tvDto.setBrand(tv.getBrand());
+        tvDto.setName(tv.getName());
+        tvDto.setPrice(tv.getPrice());
+
+        return tvDto;
     }
 
-    public void addTv(Television newTv) {
-        televisionRepository.save(newTv);
+    public TelevisionCreatedDto addTv(TelevisionDto newTv) {
+
+        Television tv = new Television();
+
+        tv.setType(newTv.getType());
+        tv.setBrand(newTv.getBrand());
+        tv.setName(newTv.getName());
+        tv.setPrice(newTv.getPrice());
+
+        tv = televisionRepository.save(tv);
+
+        TelevisionCreatedDto createdTelevision = new TelevisionCreatedDto();
+
+        createdTelevision.setId(tv.getId());
+        createdTelevision.setType(tv.getType());
+        createdTelevision.setBrand(tv.getBrand());
+        createdTelevision.setName(tv.getName());
+        createdTelevision.setPrice(tv.getPrice());
+
+        return createdTelevision;
     }
 
-    public void updateTv(long id, Television tv) {
+    public Television updateTv(long id, Television tv) {
 
         Optional<Television> result = televisionRepository.findById(id);
 
@@ -44,13 +72,7 @@ public class TelevisionService {
             throw new RecordNotFoundException("tv cannot be found!");
         }
 
-        Television tvToUpdate = televisionRepository.getById(id);
-
-        tvToUpdate.setPrice(tv.getPrice());
-
-        televisionRepository.save(tvToUpdate);
-
-
+        return televisionRepository.save(tv);
     }
 
     public void removeTv(long id) {

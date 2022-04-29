@@ -1,19 +1,22 @@
 package nl.novi.les.springboot.backendtechiteasy.controllers;
 
-import nl.novi.les.springboot.backendtechiteasy.models.Television;
+import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionDto;
+import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionCreatedDto;
+import nl.novi.les.springboot.backendtechiteasy.models.entities.Television;
 import nl.novi.les.springboot.backendtechiteasy.services.TelevisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
 @RequestMapping("televisions")
 public class TelevisionsController {
 
-    private TelevisionService televisionService;
+    private final TelevisionService televisionService;
 
     @Autowired
     public TelevisionsController(TelevisionService televisionService) {
@@ -45,26 +48,29 @@ public class TelevisionsController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Television> getTvById(@PathVariable Long id) {
+    public ResponseEntity<TelevisionCreatedDto> getTvById(@PathVariable Long id) {
         return ResponseEntity.ok(televisionService.getTvById(id));
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void addTv(@RequestBody Television newTv) {
-        televisionService.addTv(newTv);
+    public ResponseEntity<TelevisionCreatedDto> addTv(@RequestBody TelevisionDto newTv) {
+        TelevisionCreatedDto createdTv = televisionService.addTv(newTv);
+
+        URI location = URI.create("televisions/" + createdTv.getId());
+
+        return ResponseEntity.created(location).body(createdTv);
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void removeTv(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> removeTv(@PathVariable Long id) {
         televisionService.removeTv(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateTv(@PathVariable Long id, @RequestBody Television tv) {
-        televisionService.updateTv(id, tv);
+    public ResponseEntity<Television> updateTv(@PathVariable Long id, @RequestBody Television tv) {
+
+        return ResponseEntity.accepted().body(televisionService.updateTv(id, tv));
     }
 
 }

@@ -1,4 +1,4 @@
-package nl.novi.les.springboot.backendtechiteasy.models;
+package nl.novi.les.springboot.backendtechiteasy.models.entities;
 
 import javax.persistence.*;
 
@@ -7,19 +7,19 @@ public class Television {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private long id;
+
+    @Column(length = 50)
+    private String type;
+
+    @Column(length =25)
+    private String brand;
+
+    @Column(length = 50)
+    private String name;
 
     @Column
-    String type;
-
-    @Column
-    String brand;
-
-    @Column
-    String name;
-
-    @Column
-    double price;
+    private double price;
 
 //    @Column(name = "availableSize")
 //    double availableSize;
@@ -77,12 +77,24 @@ public class Television {
         return type;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getBrand() {
         return brand;
     }
 
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public double getPrice() {

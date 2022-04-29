@@ -1,6 +1,6 @@
 package nl.novi.les.springboot.backendtechiteasy.repositories;
 
-import nl.novi.les.springboot.backendtechiteasy.models.Television;
+import nl.novi.les.springboot.backendtechiteasy.models.entities.Television;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
