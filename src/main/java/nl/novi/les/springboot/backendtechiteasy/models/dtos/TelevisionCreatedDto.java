@@ -4,7 +4,7 @@ import org.hibernate.validator.constraints.Length;
 
 public class TelevisionCreatedDto {
 
-    private long id;
+    private Long id;
 
     @Length(min = 5, max = 50)
     private String type;
@@ -15,7 +15,7 @@ public class TelevisionCreatedDto {
     @Length(min = 5, max = 50)
     private String name;
 
-    private double price;
+    private Double price;
 
     public long getId() {
         return id;

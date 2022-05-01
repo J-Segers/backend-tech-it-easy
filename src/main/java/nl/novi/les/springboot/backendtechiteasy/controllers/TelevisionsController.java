@@ -24,13 +24,13 @@ public class TelevisionsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Television>> getAllTvs(
+    public ResponseEntity<List<TelevisionCreatedDto>> getAllTvs(
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "brand", required = false) String brand,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "price", required = false) Double price) {
 
-        List<Television> televisions;
+        List<TelevisionCreatedDto> televisions;
 
         if(type != null){
             televisions = televisionService.getAllTvsByType(type);
@@ -68,7 +68,7 @@ public class TelevisionsController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Television> updateTv(@PathVariable Long id, @RequestBody Television tv) {
+    public ResponseEntity<TelevisionCreatedDto> updateTv(@PathVariable Long id, @RequestBody TelevisionCreatedDto tv) {
 
         return ResponseEntity.accepted().body(televisionService.updateTv(id, tv));
     }

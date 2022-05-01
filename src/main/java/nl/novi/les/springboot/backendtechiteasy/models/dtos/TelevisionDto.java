@@ -13,7 +13,7 @@ public class TelevisionDto {
     @Length(min = 5, max = 50)
     private String name;
 
-    private double price;
+    private Double price;
 
     public String getType() {
         return type;
@@ -39,7 +39,7 @@ public class TelevisionDto {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
