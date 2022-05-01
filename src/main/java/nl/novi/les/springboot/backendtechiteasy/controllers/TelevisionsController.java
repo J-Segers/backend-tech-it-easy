@@ -1,8 +1,7 @@
 package nl.novi.les.springboot.backendtechiteasy.controllers;
 
+import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionInputDto;
 import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionDto;
-import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionCreatedDto;
-import nl.novi.les.springboot.backendtechiteasy.models.entities.Television;
 import nl.novi.les.springboot.backendtechiteasy.services.TelevisionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,13 +23,13 @@ public class TelevisionsController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TelevisionCreatedDto>> getAllTvs(
+    public ResponseEntity<List<TelevisionDto>> getAllTvs(
             @RequestParam(value = "type", required = false) String type,
             @RequestParam(value = "brand", required = false) String brand,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "price", required = false) Double price) {
 
-        List<TelevisionCreatedDto> televisions;
+        List<TelevisionDto> televisions;
 
         if(type != null){
             televisions = televisionService.getAllTvsByType(type);
@@ -48,15 +47,15 @@ public class TelevisionsController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TelevisionCreatedDto> getTvById(@PathVariable Long id) {
+    public ResponseEntity<TelevisionDto> getTvById(@PathVariable Long id) {
         return ResponseEntity.ok(televisionService.getTvById(id));
     }
 
     @PostMapping
-    public ResponseEntity<TelevisionCreatedDto> addTv(@RequestBody TelevisionDto newTv) {
-        TelevisionCreatedDto createdTv = televisionService.addTv(newTv);
+    public ResponseEntity<TelevisionDto> addTv(@RequestBody TelevisionInputDto newTv) {
+        TelevisionDto createdTv = televisionService.addTv(newTv);
 
-        URI location = URI.create("televisions/" + createdTv.getId());
+        URI location = URI.create("televisions/" + createdTv.id);
 
         return ResponseEntity.created(location).body(createdTv);
     }
@@ -68,7 +67,7 @@ public class TelevisionsController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TelevisionCreatedDto> updateTv(@PathVariable Long id, @RequestBody TelevisionCreatedDto tv) {
+    public ResponseEntity<TelevisionDto> updateTv(@PathVariable Long id, @RequestBody TelevisionInputDto tv) {
 
         return ResponseEntity.accepted().body(televisionService.updateTv(id, tv));
     }

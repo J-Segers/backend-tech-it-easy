@@ -1,11 +1,10 @@
 package nl.novi.les.springboot.backendtechiteasy.services;
 
+import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionInputDto;
 import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionDto;
-import nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionCreatedDto;
 import nl.novi.les.springboot.backendtechiteasy.exceptions.RecordNotFoundException;
 import nl.novi.les.springboot.backendtechiteasy.models.entities.Television;
 import nl.novi.les.springboot.backendtechiteasy.repositories.TelevisionRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,24 +12,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionDto.fromTelevision;
+import static nl.novi.les.springboot.backendtechiteasy.models.dtos.TelevisionInputDto.toTelevision;
+
 @Service
 public class TelevisionService {
 
     private final TelevisionRepository televisionRepository;
-    private final ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     public TelevisionService(TelevisionRepository televisionRepository) {
         this.televisionRepository = televisionRepository;
     }
 
-    public List<TelevisionCreatedDto> getAllTvs() {
+    public List<TelevisionDto> getAllTvs() {
         List<Television> televisionList = televisionRepository.findAll();
 
         return convertTelevisionListToDtoList(televisionList);
     }
 
-    public TelevisionCreatedDto getTvById(Long id) {
+    public TelevisionDto getTvById(Long id) {
         Optional<Television> result = televisionRepository.findById(id);
         if(result.isEmpty()) {
             throw new RecordNotFoundException("Tv not found!");
@@ -38,19 +39,19 @@ public class TelevisionService {
 
         Television tv = televisionRepository.getById(id);
 
-        return modelMapper.map(tv, TelevisionCreatedDto.class);
+        return fromTelevision(tv);
     }
 
-    public TelevisionCreatedDto addTv(TelevisionDto newTv) {
+    public TelevisionDto addTv(TelevisionInputDto newTv) {
 
-        Television tv = modelMapper.map(newTv, Television.class);
+        Television tv = toTelevision(newTv);
 
         tv = televisionRepository.save(tv);
 
-        return modelMapper.map(tv, TelevisionCreatedDto.class);
+        return fromTelevision(tv);
     }
 
-    public TelevisionCreatedDto updateTv(long id, TelevisionCreatedDto tv) {
+    public TelevisionDto updateTv(long id, TelevisionInputDto tv) {
 
         Optional<Television> result = televisionRepository.findById(id);
 
@@ -58,11 +59,11 @@ public class TelevisionService {
             throw new RecordNotFoundException("tv cannot be found!");
         }
 
-        Television updatedTv = modelMapper.map(tv, Television.class);
-
+        Television updatedTv = toTelevision(tv);
+        updatedTv.setId(id);
         updatedTv = televisionRepository.save(updatedTv);
 
-        return modelMapper.map(updatedTv, TelevisionCreatedDto.class);
+        return fromTelevision(updatedTv);
     }
 
     public void removeTv(long id) {
@@ -73,35 +74,35 @@ public class TelevisionService {
         televisionRepository.deleteById(id);
     }
 
-    public List<TelevisionCreatedDto> getAllTvsByType(String value) {
+    public List<TelevisionDto> getAllTvsByType(String value) {
         List<Television> televisionList = televisionRepository.findTelevisionsByTypeEqualsIgnoreCase(value);
 
         return convertTelevisionListToDtoList(televisionList);
     }
 
-    public List<TelevisionCreatedDto> getAllTvsByBrand(String value) {
+    public List<TelevisionDto> getAllTvsByBrand(String value) {
         List<Television> televisionList = televisionRepository.findTelevisionsByBrandEqualsIgnoreCase(value);
 
         return convertTelevisionListToDtoList(televisionList);
     }
 
-    public List<TelevisionCreatedDto> getAllTvsByName(String value) {
+    public List<TelevisionDto> getAllTvsByName(String value) {
         List<Television> televisionList = televisionRepository.findTelevisionsByNameEqualsIgnoreCase(value);
 
         return convertTelevisionListToDtoList(televisionList);
     }
 
-    public List<TelevisionCreatedDto> getAllTvsByPrice(double value) {
+    public List<TelevisionDto> getAllTvsByPrice(double value) {
         List<Television> televisionList = televisionRepository.findTelevisionsByPriceIs(value);
 
         return convertTelevisionListToDtoList(televisionList);
     }
 
-    private List<TelevisionCreatedDto> convertTelevisionListToDtoList(List<Television> televisionList) {
-        List<TelevisionCreatedDto> returnList = new ArrayList<>();
+    private List<TelevisionDto> convertTelevisionListToDtoList(List<Television> televisionList) {
+        List<TelevisionDto> returnList = new ArrayList<>();
 
         for(Television tv : televisionList) {
-            returnList.add(modelMapper.map(tv, TelevisionCreatedDto.class));
+            returnList.add(fromTelevision(tv));
         }
 
         return returnList;

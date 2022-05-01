@@ -1,49 +1,31 @@
 package nl.novi.les.springboot.backendtechiteasy.models.dtos;
 
+import nl.novi.les.springboot.backendtechiteasy.models.entities.Television;
 import org.hibernate.validator.constraints.Length;
 
 public class TelevisionDto {
 
+    public Long id;
+
     @Length(min = 5, max = 50)
-    private String type;
+    public String type;
 
     @Length(min = 2, max = 25)
-    private String brand;
+    public String brand;
 
     @Length(min = 5, max = 50)
-    private String name;
+    public String name;
 
-    private Double price;
+    public Double price;
 
-    public String getType() {
-        return type;
-    }
+    public static TelevisionDto fromTelevision(Television television) {
+        TelevisionDto televisionDto = new TelevisionDto();
+        televisionDto.id = television.getId();
+        televisionDto.type = television.getType();
+        televisionDto.brand = television.getBrand();
+        televisionDto.name = television.getName();
+        televisionDto.price = television.getPrice();
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
+        return televisionDto;
     }
 }
