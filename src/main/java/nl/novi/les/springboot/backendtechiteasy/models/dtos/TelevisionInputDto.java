@@ -27,4 +27,13 @@ public class TelevisionInputDto {
         return television;
     }
 
+    public void printObject() {
+
+        System.out.println("type: " + type);
+        System.out.println("brand: " + brand);
+        System.out.println("name: " + name);
+        System.out.println("price: " + price);
+
+    }
+
 }
