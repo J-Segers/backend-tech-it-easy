@@ -3,6 +3,7 @@ package nl.novi.les.springboot.backendtechiteasy.controllers;
 import nl.novi.les.springboot.backendtechiteasy.models.dtos.RemoteControlDto;
 import nl.novi.les.springboot.backendtechiteasy.models.dtos.RemoteControlInputDto;
 import nl.novi.les.springboot.backendtechiteasy.services.RemoteControlService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,7 @@ public class RemoteControlController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<HttpResponse.ResponseInfo> removeRemote(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> removeRemote(@PathVariable Long id) {
         remoteControlService.deleteRemote(id);
 
         return ResponseEntity.noContent().build();
