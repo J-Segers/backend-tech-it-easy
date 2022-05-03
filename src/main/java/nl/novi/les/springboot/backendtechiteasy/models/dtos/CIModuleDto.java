@@ -9,7 +9,7 @@ public class CIModuleDto {
     public String type;
     public Double price;
 
-    public static CIModuleDto fromCIModel(CIModule ciModule) {
+    public static CIModuleDto fromCIModule(CIModule ciModule) {
         CIModuleDto ciModuleDto = new CIModuleDto();
 
         ciModuleDto.id = ciModule.getId();

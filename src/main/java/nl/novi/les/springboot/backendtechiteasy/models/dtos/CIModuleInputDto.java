@@ -7,12 +7,12 @@ public class CIModuleInputDto {
     public String type;
     public Double price;
 
-    public static CIModule toCIModel(CIModule ciModule) {
-        CIModuleInputDto ciModuleDto = new CIModuleInputDto();
+    public static CIModule toCIModule(CIModuleInputDto ciModuleInputDto) {
+        CIModule ciModule = new CIModule();
 
-        ciModuleDto.name = ciModule.getName();
-        ciModuleDto.type = ciModule.getType();
-        ciModuleDto.price = ciModule.getPrice();
+         ciModule.setName(ciModuleInputDto.name);
+         ciModule.setType(ciModuleInputDto.type);
+         ciModule.setPrice(ciModuleInputDto.price);
 
         return ciModule;
     }
