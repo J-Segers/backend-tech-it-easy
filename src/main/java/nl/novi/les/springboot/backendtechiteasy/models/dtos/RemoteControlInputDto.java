@@ -10,7 +10,7 @@ public class RemoteControlInputDto {
     public Double price;
     public Integer originalStock;
 
-    public static RemoteControl fromRemoteControl(RemoteControlInputDto remoteControlInputDto) {
+    public static RemoteControl toRemoteControl(RemoteControlInputDto remoteControlInputDto) {
         RemoteControl remoteControl = new RemoteControl();
 
          remoteControl.setCompatibleWith(remoteControlInputDto.compatibleWith);
