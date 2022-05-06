@@ -74,9 +74,21 @@
 >>  - ✔een functie voor het verwijderen van 1 Television
 >>  - een functie voor het updaten van 1 Television
 >> - ✔De Controller is door middel van een autowired gelinkt aan de Service;
->> - Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Dtos;
->> - De map Dtos bevat een TelevisionDto en een TelevisionInputDto;
->> - De requestMappings in de Controller worden aangepast zodat deze de juiste response doorgeven via de Service;
->> - De Service maakt gebruik van de gegevens die we via de Controller doorkrijgen van de Dtos;
->> - Het project bevat de validator dependency uit paragraaf 8.1 van de cursus Spring Boot in Edhub.
- 
+>> - ✔Het project bevat, op de juiste plaats in de map-structuur, een map genaamd Dtos;
+>> - ✔De map Dtos bevat een TelevisionDto en een TelevisionInputDto;
+>> - ✔De requestMappings in de Controller worden aangepast zodat deze de juiste response doorgeven via de Service;
+>> - ✔De Service maakt gebruik van de gegevens die we via de Controller doorkrijgen van de Dtos;
+>> - ✔Het project bevat de validator dependency uit paragraaf 8.1 van de cursus Spring Boot in Edhub.
+
+
+>###Opdracht 4
+>>- Het project bevat de volgende Models: 
+>>  - ✔Television
+>>  - ✔RemoteController met de variables: -Longid -StringcompatibleWith -StringbatteryType -Stringname -Stringbrand -Double price -Integer originalStock
+>>  - ✔CI-Module met de variables: -Long id -String name -String type -Double price
+>>  - ✔WallBracket met de variables: -Long id -String size -Boolean ajustable -String name -Double price Voor elk van deze modellen bevat je applicatie ook een Repository, Controller, Dto, InputDto en een Service.
+>>
+>>- Daarnaast bevat het project: 
+>>  - Een OneToOne relatie tussen Television en RemoteController
+>>  - Een OneToMany relatie tussen Television en CI-Module
+>>  - Een ManyToMany relatie tussen Television en WallBracket
